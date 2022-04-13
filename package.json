@@ -1,0 +1,26 @@
+{
+  "name": "smashingshortcuts",
+  "version": "1.0.0",
+  "description": "Global shortcuts with modular functions",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Woutervdvelde/SmashingShortcuts.git"
+  },
+  "keywords": [
+    "shortcuts"
+  ],
+  "author": "Wouter van der Velde",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Woutervdvelde/SmashingShortcuts/issues"
+  },
+  "homepage": "https://github.com/Woutervdvelde/SmashingShortcuts#readme",
+  "devDependencies": {
+    "electron": "^18.0.3"
+  }
+}
