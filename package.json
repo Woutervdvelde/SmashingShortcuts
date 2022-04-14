@@ -5,17 +5,14 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "watch": "tsc -w",
-    "lint": "eslint -c .eslintrc --ext .ts ./src",
-    "start": "npm run build && electron ./dist/main.js"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Woutervdvelde/SmashingShortcuts.git"
   },
   "keywords": [
-    "shortcuts", "Electron"
+    "shortcuts"
   ],
   "author": "Wouter van der Velde",
   "license": "MIT",
@@ -24,9 +21,6 @@
   },
   "homepage": "https://github.com/Woutervdvelde/SmashingShortcuts#readme",
   "devDependencies": {
-    "electron": "^18.0.3",
-    "typescript": "^4.6.3",
-    "eslint": "^7.32.0"
-  },
-  "dependencies": {}
+    "electron": "^18.0.3"
+  }
 }
