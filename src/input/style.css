@@ -12,12 +12,18 @@ html {
 }
 
 input {
+    display: block;
+    margin: 0 auto;
     width: 75vw;
     padding: 1rem;
     border-radius: 25px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2rem;
     border: 3px solid white;
+}
+
+input:focus{
+    outline: none;
 }
 
 .suggestions {

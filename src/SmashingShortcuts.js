@@ -11,7 +11,7 @@ class SmashingShortcuts {
 
     destroyInput() {
         if (!this.window) return;
-        this.window.close();
+        this.window.destroy();
         this.window = null;
     }
 
@@ -20,7 +20,6 @@ class SmashingShortcuts {
         this.window = new BrowserWindow({
             frame: null,
             transparent: true,
-            backgroundColor: 'transparent',
             show: false,
             webPreferences: {
                 preload: path.join(__dirname, './input/preload.js'),
@@ -34,6 +33,7 @@ class SmashingShortcuts {
         this.window.once('ready-to-show', () => {
             this.window.show()
         });
+        this.window.on("blur", () => this.destroyInput())
     }
 }
 
