@@ -1,18 +1,16 @@
 const { BrowserWindow, ipcMain } = require('electron');
 const path = require("path");
+const Store = require("electron-store");
 
 
 class SmashingShortcuts {
+    store = null;
     window = null;
 
     constructor() {
+        this.store = new Store();
         ipcMain.on('input-close', () => this.destroyInput());
-    }
-
-    destroyInput() {
-        if (!this.window) return;
-        this.window.destroy();
-        this.window = null;
+        ipcMain.on('command', (e, m) => this.parseCommand(e, m))
     }
 
     showInput() {
@@ -30,10 +28,20 @@ class SmashingShortcuts {
         });
         this.window.loadFile(path.join(__dirname, '/input/input.html'));
 
+        this.window.once("blur", () => this.destroyInput())
         this.window.once('ready-to-show', () => {
             this.window.show()
         });
-        this.window.on("blur", () => this.destroyInput())
+    }
+
+    destroyInput() {
+        if (!this.window) return;
+        this.window.destroy();
+        this.window = null;
+    }
+
+    parseCommand(event, message) {
+        console.log(message);
     }
 }
 
