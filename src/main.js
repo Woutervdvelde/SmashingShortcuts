@@ -1,15 +1,14 @@
-const { app, BrowserWindow, globalShortcut } = require('electron');
-const { SmashingShortcuts } = require("./SmashingShortcuts");
-const path = require("path");
+const { app, globalShortcut } = require('electron');
+const { ShortcutClient } = require("./SmashingShortcuts");
 
-const ShortcutClient = new SmashingShortcuts();
+const SC = new ShortcutClient();
 
 const shortcutTriggered = (e) => {
-    ShortcutClient.showInput();
+    SC.showInput();
 }
 
 app.whenReady().then(() => {
     // globalShortcut.register('Alt+CommandOrControl+I', shortcutTriggered);
     globalShortcut.register('CommandOrControl+I', shortcutTriggered);
-    app.on('window-all-closed', (e) => {ShortcutClient.destroyInput()});
+    app.on('window-all-closed', (e) => {SC.destroyInput()});
 })

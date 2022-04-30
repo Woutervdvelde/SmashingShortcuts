@@ -14,10 +14,12 @@ FOLDER
 A command should have the following properties (take the `add` command for example):
 ```
 {
-    name: 'add'                         -> name of the command
-    aliases: ['a', 'create']            -> possible aliases for the command
-    usage: 'adds a new shortcut'        -> short description, 
-                                            will be visisble in typehinting.
-    description: 'this command adds a new shortcut, 
+    name: 'add'                                         -> name of the command
+    alias: ['a', 'create']                              -> possible aliases for the command
+    typehint: 'url...'                                  -> italic text behind completely typed command
+    usage: 'adds a new shortcut'                        -> short description, 
+                                                        will be visisble in typehinting.
+    description: 'this command adds a new shortcut'     -> longer description for more information
+    execute(message, args) {}                           -> this will be called when the user wants to use this command
     
 }

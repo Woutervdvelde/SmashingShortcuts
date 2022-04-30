@@ -4,13 +4,15 @@ const path = require("path");
 const Store = require("electron-store");
 
 
-class SmashingShortcuts {
+class ShortcutClient {
     store = null;
     window = null;
+    shortcuts = {};
     commands = {};
 
     constructor() {
         this.store = new Store();
+        this.loadShortcuts();
         this.loadCommands();
         ipcMain.on('input-close', () => this.destroyInput());
         ipcMain.on('command', (e, m) => this.parseCommand(e, m))
@@ -43,9 +45,33 @@ class SmashingShortcuts {
         this.window = null;
     }
 
+    loadShortcuts() {
+        const shortcuts = {};
+        this.store.set('shortcuts', shortcuts);
+    }
+
     loadCommands() {
-        const files = fs.readdirSync(path.join(__dirname, './commands')).filter(file => file.endsWith('.js'));
-        console.log(files);
+        const mainDir = path.join(__dirname, "/commands/");
+        const directories = fs.readdirSync(mainDir, { withFileTypes: true })
+            .filter(f => f.isDirectory())
+            .map(f => f.name);
+        const commands = {};
+
+        directories.forEach(dir => {
+            try {
+                const command = require(path.join(mainDir, dir, "command.js"));
+                const sub_files = fs.readdirSync(path.join(mainDir, dir, "/subcommands/"))
+                    .filter(file => file.endsWith(".js"));
+                const subcommands = sub_files.map(file => require(path.join(mainDir, dir, "/subcommands/", file)));
+                command.subcommands = subcommands;
+                commands[command.name] = command;
+            } catch (e) {
+                console.error(e);
+            }
+        });
+
+        this.commands = commands;
+        this.store.set('commands', commands);
     }
 
     parseCommand(event, message) {
@@ -61,7 +87,9 @@ class SmashingShortcuts {
     handleCommand(command, args) {
         console.log(command);
         console.log(args);
+        console.log(this.store.get(command));
+        // this.store.set(command, args.join(" "));
     }
 }
 
-module.exports = {SmashingShortcuts: SmashingShortcuts}
+module.exports = { ShortcutClient: ShortcutClient }
