@@ -18,8 +18,8 @@ A command should have the following properties (take the `add` command for examp
     alias: ['a', 'create']                              -> possible aliases for the command
     typehint: 'url...'                                  -> italic text behind completely typed command
     usage: 'adds a new shortcut'                        -> short description, 
-                                                        will be visisble in typehinting.
+                                                        will be visisble in suggestions.
     description: 'this command adds a new shortcut'     -> longer description for more information
-    execute(message, args) {}                           -> this will be called when the user wants to use this command
+    execute(ShortcutClient, args) {}                    -> this will be called when the user wants to use this command
     
 }

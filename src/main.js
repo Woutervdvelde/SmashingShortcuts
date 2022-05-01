@@ -1,5 +1,5 @@
 const { app, globalShortcut } = require('electron');
-const { ShortcutClient } = require("./SmashingShortcuts");
+const { ShortcutClient } = require("./util/SmashingShortcuts");
 
 const SC = new ShortcutClient();
 

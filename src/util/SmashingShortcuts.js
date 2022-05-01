@@ -51,7 +51,7 @@ class ShortcutClient {
     }
 
     loadCommands() {
-        const mainDir = path.join(__dirname, "/commands/");
+        const mainDir = path.join(__dirname, "../commands/");
         const directories = fs.readdirSync(mainDir, { withFileTypes: true })
             .filter(f => f.isDirectory())
             .map(f => f.name);
@@ -84,11 +84,12 @@ class ShortcutClient {
         this.handleCommand(command, args);
     }
 
-    handleCommand(command, args) {
-        console.log(command);
-        console.log(args);
-        console.log(this.store.get(command));
-        // this.store.set(command, args.join(" "));
+    async handleCommand(command, args) {
+        command = this.commands[command];
+        if (!command) return;
+
+        const response = await command.execute(this, args);
+        if (response) this.destroyInput();
     }
 }
 
