@@ -1,5 +1,5 @@
 const { ipcRenderer, contextBridge } = require('electron');
-const Store = require('electron-store');
+const Store = new (require('electron-store'))();
 
 
 process.once('loaded', () => {
@@ -9,6 +9,6 @@ process.once('loaded', () => {
     ipcRenderer.send(message.type, message);
   }
 
-  contextBridge.exposeInMainWorld("shortcuts", new Store().get('shortcuts'));
-  contextBridge.exposeInMainWorld("commands", new Store().get('commands'));
+  contextBridge.exposeInMainWorld("shortcuts", Store.get('shortcuts'));
+  contextBridge.exposeInMainWorld("commands", Store.get('commands'));
 });

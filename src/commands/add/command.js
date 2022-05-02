@@ -1,4 +1,5 @@
 const { dialog, BrowserWindow } = require('electron');
+const InputDialog = require("../../util/dialog/InputDialog");
 const path = require('path');
 
 module.exports = {
@@ -8,6 +9,19 @@ module.exports = {
     usage: 'add shortcut to a website',
     description: 'Creates a new shortcut to the specified web address.',
     async execute(ShortcutClient, args) {
+        const message = "Add shortcut details:";
+        const inputs = [
+            {
+                name: "shortcut",
+                type: "text",
+            },
+            {
+                name: "url",
+                type: "url",
+                value: args[0] || null
+            }
+        ];
+
         // let window = new BrowserWindow({
         //     frame: null,
         //     transparent: true,
@@ -18,7 +32,8 @@ module.exports = {
         // window.once('blur', () => window.destroy());
 
 
-        // const response = await dialog.showOpenDialogSync(ShortcutClient.window, {type: "question"});
+        const response = await InputDialog.showInputFormSync({message: message, inputs: inputs});
+        console.log(response);
         // return true;
     }
 }

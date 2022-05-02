@@ -26,9 +26,6 @@ class ShortcutClient {
             show: false,
             webPreferences: {
                 preload: path.join(__dirname, './input/preload.js'),
-                nodeIntegration: false,
-                enableRemoteModule: false,
-                contextIsolation: true,
             }
         });
         this.window.loadFile(path.join(__dirname, '/input/input.html'));
