@@ -14,6 +14,7 @@ module.exports = {
             {
                 name: "shortcut",
                 type: "text",
+                label: ""
             },
             {
                 name: "url",
