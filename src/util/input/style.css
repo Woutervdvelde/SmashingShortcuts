@@ -16,14 +16,19 @@ html {
 }
 
 .input-container {
+    background-color: hsl(0, 0%, 100%);
+}
+
+.input-container {
     position: relative;
     width: 75vw;
     padding: 1rem;
-    border: 3px solid white;
+    border-width: 3px;
+    border-style: solid;
     border-radius: 25px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2rem;
-    color: white;
+    opacity: .9;
 }
 
 #input:focus {
@@ -39,13 +44,17 @@ html {
 
 .suggestions {
     width: 75vw;
-    background-color: white;
     border-radius: 0 0 10px 10px;
 }
 
 @media (prefers-color-scheme: dark) {
     .input-container {
-        background-color: #1E1E1E;
-        color: rgba(255, 255, 255, .9);
+        background-color: hsl(0, 0%, 12%);
+        color: hsl(0, 0%, 100%);
+        border-color: hsl(0, 0%, 100%);
+    }
+
+    .suggestions {
+        background-color: hsl(0, 0%, 100%);
     }
 }

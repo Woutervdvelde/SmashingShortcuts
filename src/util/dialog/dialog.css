@@ -1,0 +1,34 @@
+#input-form {
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    opacity: .9;
+}
+
+input, label {
+    display: block;
+}
+
+input {
+    font-size: inherit;
+    font-family: inherit;
+    padding: 1rem;
+    margin-bottom: 2em;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 25px;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    input, label {
+        color: hsl(0, 0%, 100%);
+    }
+
+    input {
+        background-color: hsl(0, 0%, 12%);
+    }
+}
